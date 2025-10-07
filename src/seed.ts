@@ -7,6 +7,7 @@ dotenv.config();
 const seedAdmin = async () => {
   try {
     await mongoose.connect(process.env.DATABASE_URL as string);
+    // eslint-disable-next-line no-console
     console.log('MongoDB Connected for seeding...');
     
     await User.deleteMany({ email: 'admin@example.com' });
@@ -18,14 +19,19 @@ const seedAdmin = async () => {
     });
 
     await adminUser.save();
+    // eslint-disable-next-line no-console
     console.log('Admin user seeded successfully!');
+    // eslint-disable-next-line no-console
     console.log('Email: admin@example.com');
+    // eslint-disable-next-line no-console
     console.log('Password: password123');
 
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Error seeding data:', error);
   } finally {
     await mongoose.disconnect();
+    // eslint-disable-next-line no-console
     console.log('MongoDB disconnected.');
     process.exit();
   }

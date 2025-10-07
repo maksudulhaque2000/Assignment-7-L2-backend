@@ -13,7 +13,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
   try {
     jwt.verify(token, process.env.JWT_SECRET as string);
     next();
-  } catch (error) {
+  } catch {
     res.status(403).json({ message: 'Invalid or expired token' });
   }
 };

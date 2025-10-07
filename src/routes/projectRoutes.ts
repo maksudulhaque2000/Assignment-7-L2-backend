@@ -9,14 +9,17 @@ const revalidate = async (path: string) => {
   const frontendUrl = process.env.FRONTEND_URL;
   const token = process.env.REVALIDATION_TOKEN;
   if (!frontendUrl || !token) {
+    // eslint-disable-next-line no-console
     console.error('Frontend URL or revalidation token is not set in backend .env');
     return;
   }
   const encodedToken = encodeURIComponent(token);
   try {
     await fetch(`${frontendUrl}/api/revalidate?path=${path}&token=${encodedToken}`);
+    // eslint-disable-next-line no-console
     console.log(`Revalidation signal sent for path: ${path}`);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(`Failed to send revalidation signal for ${path}:`, error);
   }
 };
@@ -26,7 +29,7 @@ router.get('/', async (req, res) => {
   try {
     const projects = await Project.find().sort({ createdAt: -1 });
     res.json(projects);
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -36,7 +39,7 @@ router.get('/:id', async (req, res) => {
     const project = await Project.findById(req.params.id);
     if (!project) return res.status(404).json({ message: 'Project not found' });
     res.json(project);
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -53,7 +56,7 @@ router.post('/', authMiddleware, async (req, res) => {
     await revalidate('/projects');
 
     res.status(201).json(newProject);
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -68,7 +71,7 @@ router.put('/:id', authMiddleware, async (req, res) => {
     await revalidate('/projects');
 
     res.json(updatedProject);
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -83,7 +86,7 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     await revalidate('/projects');
 
     res.json({ message: 'Project deleted successfully' });
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 });

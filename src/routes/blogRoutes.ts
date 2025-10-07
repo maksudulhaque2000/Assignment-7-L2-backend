@@ -10,14 +10,17 @@ const revalidate = async (path: string) => {
   const token = process.env.REVALIDATION_TOKEN;
 
   if (!frontendUrl || !token) {
+    // eslint-disable-next-line no-console
     console.error('Frontend URL or revalidation token is not set in backend .env');
     return;
   }
   const encodedToken = encodeURIComponent(token);
   try {
     await fetch(`${frontendUrl}/api/revalidate?path=${path}&token=${encodedToken}`);
+    // eslint-disable-next-line no-console
     console.log(`Revalidation signal sent for path: ${path}`);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(`Failed to send revalidation signal for ${path}:`, error);
   }
 };
@@ -27,7 +30,7 @@ router.get('/', async (req, res) => {
   try {
     const blogs = await Blog.find().sort({ createdAt: -1 });
     res.json(blogs);
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -37,7 +40,7 @@ router.get('/:id', async (req, res) => {
     const blog = await Blog.findById(req.params.id);
     if (!blog) return res.status(404).json({ message: 'Blog not found' });
     res.json(blog);
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -55,7 +58,7 @@ router.post('/', authMiddleware, async (req, res) => {
     await revalidate(`/blogs/${newBlog._id}`);
     
     res.status(201).json(newBlog);
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -71,7 +74,7 @@ router.put('/:id', authMiddleware, async (req, res) => {
     await revalidate(`/blogs/${req.params.id}`);
 
     res.json(updatedBlog);
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -86,7 +89,7 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     await revalidate('/blogs');
     
     res.json({ message: 'Blog deleted successfully' });
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 });

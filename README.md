@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="[BACKEND_LIVE_URL]" target="_blank">
+  <a href="https://portfolio-backend-gold-chi.vercel.app" target="_blank">
     <strong>🌐 View Live API URL</strong>
   </a>
 </p>
@@ -97,7 +97,7 @@ REVALIDATION_TOKEN="your_super_secret_token"
 
 1.  **Clone the repository:**
     ```bash
-    git clone [BACKEND_REPO_URL](https://github.com/maksudulhaque2000/Assignment-7-L2-backend)
+    git clone (https://github.com/maksudulhaque2000/Assignment-7-L2-backend)
     cd portfolio-backend
     ```
 
@@ -121,3 +121,59 @@ REVALIDATION_TOKEN="your_super_secret_token"
     ```
 
 The server will start on `http://localhost:5000`.
+
+---
+
+## 🔑 Admin Credentials for Testing
+
+To access the private dashboard for managing blogs and projects, please use the following credentials on the login page.
+
+| Role  | Email                 | Password      |
+| :---- | :-------------------- | :------------ |
+| Admin | `admin@example.com`   | `password123` |
+
+**Login Page URL:** `[YOUR_LIVE_DEMO_URL]/login`
+
+---
+
+## 📂 Project Structure
+- The backend is a RESTful API built with Node.js and Express, following a modular structure to separate concerns and ensure maintainability.
+
+portfolio-backend-mongo/
+├── 📁 src/
+│   ├── 📁 config/
+│   │   └── db.ts                  # 🔌 Logic for connecting to the MongoDB database
+│   ├── 📁 middleware/
+│   │   └── authMiddleware.ts      # 🛡️ JWT middleware to protect admin-only routes
+│   ├── 📁 models/
+│   │   ├── blogModel.ts           # Mongoose schema and model for Blogs
+│   │   ├── projectModel.ts        # Mongoose schema and model for Projects
+│   │   └── userModel.ts           # Mongoose schema and model for Users (Admin)
+│   ├── 📁 routes/
+│   │   ├── authRoutes.ts          # API routes for authentication (e.g., /login)
+│   │   ├── blogRoutes.ts          # API routes for all blog-related CRUD operations
+│   │   └── projectRoutes.ts       # API routes for all project-related CRUD operations
+│   ├── index.ts                   # 🚀 Main server entry point (Express app setup & middleware)
+│   └── seed.ts                    # 🌱 Script to seed the database with an initial admin user
+├── vercel.json                    # Vercel deployment configuration
+└── ...                            # Root configuration files (.env, package.json, tsconfig.json, etc.)
+
+---
+
+## 📬 Let's Connect
+
+If you like my work or want to discuss a project, feel free to contact me:
+
+* **Email**: [smmaksudulhaque2000@gmail.com](mailto:smmaksudulhaque2000@gmail.com)
+* **LinkedIn**: [linkedin.com/in/maksudulhaque2000](https://www.linkedin.com/in/maksudulhaque2000/)
+* **GitHub**: [github.com/maksudulhaque2000](https://github.com/maksudulhaque2000)
+* **Facebook**: [facebook.com/maksudulhaque2000](https://www.facebook.com/maksudulhaque2000)
+* **YouTube**: [youtube.com/@maksudulhaque2000](https://www.youtube.com/@maksudulhaque2000)
+
+---
+
+## 📜 License
+
+This project is licensed under the [MAKSUDUL HAQUE](HAQUE). Feel free to use this project to create your own portfolio!
+
+---

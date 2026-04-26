@@ -1,4 +1,8 @@
-# 🚀 Haque's Portfolio - API Server (Backend)
+<h1 align="center">🚀 Haque's Portfolio - API Server (Backend)</h1>
+
+<div align="center">
+  <img src="./src/public/server.png" height="400" width="800" alt="SocialSpark"/>
+</div>
 
 <p align="center">
   This repository contains the backend source code for my personal portfolio. It is a robust RESTful API built with Node.js, Express, and MongoDB, responsible for authentication, data management, and powering the dynamic features of the frontend.
